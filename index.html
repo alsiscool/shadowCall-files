@@ -5,16 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ShadowCall</title>
     <link rel="stylesheet" href="style.css">
+    <script defer src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
 </head>
 <body>
     <h1>Welcome to ShadowCall</h1>
     <p>Stay connected with your friends all night!</p>
 
-    <button id="startCall">Start Call</button>
-    <button id="muteToggle">Mute</button>
-    <button id="leaveCall">Leave</button>
+    <input type="text" id="username" placeholder="Enter your name">
+    <input type="file" id="profilePicInput" accept="image/*">
+    <button id="joinButton">Join Sleepover</button>
 
-    <video id="videoElement" autoplay></video>
+    <div id="userList"></div> <!-- This will show connected users -->
 
     <script src="script.js"></script>
 </body>
