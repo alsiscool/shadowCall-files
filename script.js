@@ -1,53 +1,54 @@
-const startCallButton = document.getElementById("startCall");
-const muteButton = document.getElementById("muteToggle");
-const leaveCallButton = document.getElementById("leaveCall");
-const videoElement = document.getElementById("videoElement");
-
-let localStream;
-
-// WebRTC setup
-let peerConnection;
-const servers = {
-    iceServers: [{ urls: "stun:stun.l.google.com:19302" }] // Free STUN server for peer connection
+// Firebase Setup
+const firebaseConfig = {
+    apiKey: "YOUR-FIREBASE-API-KEY",
+    authDomain: "YOUR-FIREBASE-PROJECT.firebaseapp.com",
+    databaseURL: "https://YOUR-FIREBASE-PROJECT.firebaseio.com",
+    projectId: "YOUR-FIREBASE-PROJECT",
+    storageBucket: "YOUR-FIREBASE-PROJECT.appspot.com",
+    messagingSenderId: "YOUR-FIREBASE-MESSAGING-ID",
+    appId: "YOUR-FIREBASE-APP-ID"
 };
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
 
-// Function to create a peer connection
-function createPeerConnection() {
-    peerConnection = new RTCPeerConnection(servers);
-    peerConnection.ontrack = (event) => {
-        videoElement.srcObject = event.streams[0];
+// Join button
+document.getElementById("joinButton").addEventListener("click", function () {
+    const name = document.getElementById("username").value;
+    const fileInput = document.getElementById("profilePicInput").files[0];
+
+    if (!name || !fileInput) {
+        alert("Enter a name and select a profile picture!");
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.readAsDataURL(fileInput);
+    reader.onloadend = function () {
+        const profilePic = reader.result;
+
+        // Send to Firebase
+        const userRef = db.ref("users").push();
+        userRef.set({
+            name: name,
+            profilePic: profilePic
+        });
     };
-}
-
-// Start call
-startCallButton.addEventListener("click", async () => {
-    try {
-        localStream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
-
-        // Create peer connection
-        createPeerConnection();
-        localStream.getTracks().forEach(track => peerConnection.addTrack(track, localStream));
-
-        alert("Sleepover started! Share this page with your friends.");
-    } catch (err) {
-        console.error("Error accessing microphone:", err);
-        alert("Please allow microphone access.");
-    }
 });
 
-// Mute/Unmute
-muteButton.addEventListener("click", () => {
-    if (localStream) {
-        localStream.getAudioTracks()[0].enabled = !localStream.getAudioTracks()[0].enabled;
-        muteButton.textContent = localStream.getAudioTracks()[0].enabled ? "Mute" : "Unmute";
-    }
-});
+// Update the user list in real time
+db.ref("users").on("value", (snapshot) => {
+    const users = snapshot.val();
+    const userList = document.getElementById("userList");
+    userList.innerHTML = ""; // Clear the list
 
-// Leave call
-leaveCallButton.addEventListener("click", () => {
-    if (localStream) {
-        localStream.getTracks().forEach(track => track.stop());
-        videoElement.srcObject = null;
+    if (users) {
+        Object.values(users).forEach(user => {
+            const userDiv = document.createElement("div");
+            userDiv.innerHTML = `
+                <img src="${user.profilePic}" width="50" height="50">
+                <p>${user.name}</p>
+            `;
+            userList.appendChild(userDiv);
+        });
     }
-    alert("You left the sleepover.");
 });
