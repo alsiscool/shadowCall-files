@@ -6,7 +6,7 @@
     <title>ShadowCall</title>
     <link rel="stylesheet" href="style.css">
 
-    <!-- Load Firebase 8 (NOT Firebase 9) -->
+    <!-- Load Firebase 8 -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 </head>
@@ -14,14 +14,25 @@
     <h1>Welcome to ShadowCall</h1>
     <p>Stay connected with your friends all night!</p>
 
-    <input type="text" id="username" placeholder="Enter your name">
-    <input type="file" id="profilePicInput" accept="image/*">
-    <button id="joinButton">Join Sleepover</button>
+    <!-- User Input Section -->
+    <div id="userInput">
+        <input type="text" id="username" placeholder="Enter your name" autocomplete="nickname">
+        <input type="file" id="profilePicInput" accept="image/*">
+        <button id="joinButton">Join Sleepover</button>
+    </div>
+
+    <!-- Dropdown for user controls after joining -->
+    <div id="userControls" style="display: none;">
+        <button id="toggleControls">🔽 Show Options</button>
+        <div id="controlsDropdown" style="display: none;">
+            <button id="leaveButton">Leave Sleepover</button>
+        </div>
+    </div>
 
     <h2>Current Sleepover Members:</h2>
     <div id="userList"></div> <!-- This will show profile pics & names -->
 
-    <!-- Make sure script.js loads after Firebase -->
+    <!-- Link to JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>
