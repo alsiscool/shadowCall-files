@@ -5,11 +5,29 @@ const videoElement = document.getElementById("videoElement");
 
 let localStream;
 
+// WebRTC setup
+let peerConnection;
+const servers = {
+    iceServers: [{ urls: "stun:stun.l.google.com:19302" }] // Free STUN server for peer connection
+};
+
+// Function to create a peer connection
+function createPeerConnection() {
+    peerConnection = new RTCPeerConnection(servers);
+    peerConnection.ontrack = (event) => {
+        videoElement.srcObject = event.streams[0];
+    };
+}
+
 // Start call
 startCallButton.addEventListener("click", async () => {
     try {
         localStream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
-        videoElement.srcObject = localStream;
+
+        // Create peer connection
+        createPeerConnection();
+        localStream.getTracks().forEach(track => peerConnection.addTrack(track, localStream));
+
         alert("Sleepover started! Share this page with your friends.");
     } catch (err) {
         console.error("Error accessing microphone:", err);
