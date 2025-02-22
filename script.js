@@ -1,8 +1,4 @@
-// Import Firebase SDK (For older script tag method)
-import { initializeApp } from "firebase/app";
-import { getDatabase, ref, push, set, onValue } from "firebase/database";
-
-// Firebase Configuration
+// Initialize Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyBoNXJWKGfiEt_pw133fn-QG3OqIB3nses",
   authDomain: "shadowcall-wadadooco.firebaseapp.com",
@@ -13,12 +9,10 @@ const firebaseConfig = {
   appId: "1:27660453993:web:711f8271d5e0dfa807baf8",
   measurementId: "G-WGE0Z69E1Q"
 };
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
-
-// Join button event listener
+// Join button
 document.getElementById("joinButton").addEventListener("click", function () {
     const name = document.getElementById("username").value;
     const fileInput = document.getElementById("profilePicInput").files[0];
@@ -33,17 +27,20 @@ document.getElementById("joinButton").addEventListener("click", function () {
     reader.onloadend = function () {
         const profilePic = reader.result;
 
-        // Push user data to Firebase
-        const userRef = push(ref(db, "users"));
-        set(userRef, {
+        // Save user to Firebase
+        const userRef = db.ref("users").push();
+        userRef.set({
             name: name,
             profilePic: profilePic
         });
+
+        // Show an alert when someone joins
+        alert(name + " sneaked into the sleepover! 🤫");
     };
 });
 
-// Update the user list in real-time
-onValue(ref(db, "users"), (snapshot) => {
+// Show users in real-time
+db.ref("users").on("value", (snapshot) => {
     const users = snapshot.val();
     const userList = document.getElementById("userList");
     userList.innerHTML = ""; // Clear the list
@@ -52,8 +49,8 @@ onValue(ref(db, "users"), (snapshot) => {
         Object.values(users).forEach(user => {
             const userDiv = document.createElement("div");
             userDiv.innerHTML = `
-                <img src="${user.profilePic}" width="50" height="50">
-                <p>${user.name}</p>
+                <img src="${user.profilePic}" width="100" height="100" style="border-radius: 50%;">
+                <p>${user.name} sneaked into the sleepover! 🤫</p>
             `;
             userList.appendChild(userDiv);
         });
