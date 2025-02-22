@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ShadowCall</title>
     <link rel="stylesheet" href="style.css">
-    <script defer src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-    <script defer src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+    
+    <!-- Firebase SDK (Required to make Firebase work) -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
 </head>
 <body>
     <h1>Welcome to ShadowCall</h1>
@@ -19,6 +21,7 @@
     <h2>Current Sleepover Members:</h2>
     <div id="userList"></div> <!-- This will show profile pics & names -->
 
+    <!-- Link to script.js -->
     <script src="script.js"></script>
 </body>
 </html>
