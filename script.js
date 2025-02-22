@@ -10,11 +10,11 @@ const firebaseConfig = {
     measurementId: "G-WGE0Z69E1Q"
 };
 
-// Fix: Remove imports, use global Firebase
+// Use global Firebase object (no imports needed)
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
-// Button click event
+// Join Sleepover button click event
 document.getElementById("joinButton").addEventListener("click", function () {
     const name = document.getElementById("username").value;
     const fileInput = document.getElementById("profilePicInput").files[0];
