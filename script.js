@@ -56,3 +56,10 @@ db.ref("users").on("value", (snapshot) => {
         });
     }
 });
+// TEST: Manually send data to Firebase when the page loads
+window.onload = function () {
+    const testRef = db.ref("test");
+    testRef.set({ message: "Firebase is working!" })
+    .then(() => console.log("✅ Firebase test successful!"))
+    .catch((error) => console.error("❌ Firebase test failed:", error));
+};
