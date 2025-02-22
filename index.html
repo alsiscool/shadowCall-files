@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ShadowCall</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShadowCall</title>
+    <link rel="stylesheet" href="style.css">
 
-  <!-- Load Firebase (Global scripts, not modules) -->
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+    <!-- Firebase SDK (REMOVE DUPLICATES) -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
 </head>
 <body>
-  <h1>Welcome to ShadowCall</h1>
-  <p>Stay connected with your friends all night!</p>
+    <h1>Welcome to ShadowCall</h1>
+    <p>Stay connected with your friends all night!</p>
 
-  <input type="text" id="username" placeholder="Enter your name" />
-  <input type="file" id="profilePicInput" accept="image/*" />
-  <button id="joinButton">Join Sleepover</button>
+    <input type="text" id="username" placeholder="Enter your name">
+    <input type="file" id="profilePicInput" accept="image/*">
+    <button id="joinButton">Join Sleepover</button>
 
-  <h2>Current Sleepover Members:</h2>
-  <div id="userList"></div> <!-- This will show profile pics & names -->
+    <h2>Current Sleepover Members:</h2>
+    <div id="userList"></div> <!-- This will show profile pics & names -->
 
-  <!-- Your main JavaScript file -->
-  <script src="script.js"></script>
+    <!-- MAKE SURE script.js IS LOADED AT THE END -->
+    <script src="script.js"></script>
 </body>
 </html>
