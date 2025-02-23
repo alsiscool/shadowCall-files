@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShadowCalls - Virtual Sleepover</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>ShadowCalls</h1>
+            <p class="subtitle">Virtual Sleepover with Friends</p>
+        </header>
+        
+        <main>
+            <div class="action-buttons">
+                <button id="createRoom" class="btn primary">Create Sleepover</button>
+                <button id="joinRoom" class="btn secondary">Join Sleepover</button>
+            </div>
+
+            <div id="joinDialog" class="dialog hidden">
+                <h2>Join Sleepover</h2>
+                <input type="text" id="roomCode" placeholder="Enter room code">
+                <button class="btn primary" id="joinWithCode">Join</button>
+                <button class="btn secondary" id="cancelJoin">Cancel</button>
+            </div>
+        </main>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

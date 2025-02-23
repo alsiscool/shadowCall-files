@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShadowCalls - Sleepover Room</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="room.css">
+</head>
+<body>
+    <div class="room-container">
+        <header class="room-header">
+            <h2>Room Code: <span id="roomCodeDisplay"></span></h2>
+            <div class="call-timer">
+                <span id="callDuration">00:00:00</span>
+            </div>
+        </header>
+
+        <main class="room-content">
+            <div class="video-grid" id="videoGrid"></div>
+            
+            <div class="controls">
+                <div class="control-group">
+                    <button id="toggleAudio" class="control-btn" title="Toggle Microphone">
+                        <span class="icon">🎤</span>
+                    </button>
+                    <button id="testAudio" class="control-btn" title="Test Microphone">
+                        <span class="icon">🔊</span>
+                    </button>
+                </div>
+
+                <div class="control-group">
+                    <button id="toggleVideo" class="control-btn" title="Toggle Camera">
+                        <span class="icon">📹</span>
+                    </button>
+                    <button id="setCameraTimer" class="control-btn" title="Set Camera Timer">
+                        <span class="icon">⏲️</span>
+                    </button>
+                </div>
+
+                <div class="control-group">
+                    <select id="statusSelect" class="status-select">
+                        <option value="active">Active</option>
+                        <option value="sleeping">Sleeping</option>
+                        <option value="washroom">In Washroom</option>
+                        <option value="notTalking">Not Talking</option>
+                        <option value="away">Out of Room</option>
+                        <option value="custom">Custom Status...</option>
+                    </select>
+                    <input type="text" id="customStatus" class="custom-status hidden" placeholder="Enter custom status..." maxlength="30">
+                </div>
+
+                <div class="control-group">
+                    <button id="toggleChat" class="control-btn" title="Toggle Chat">
+                        <span class="icon">💬</span>
+                        <span class="unread-badge hidden">0</span>
+                    </button>
+                    <button id="leaveCall" class="control-btn leave" title="Leave Call">
+                        <span class="icon">❌</span>
+                    </button>
+                </div>
+            </div>
+
+            <div id="chatPanel" class="chat-panel hidden">
+                <div class="chat-header">
+                    <h3>Chat</h3>
+                    <button id="closeChat" class="close-btn">×</button>
+                </div>
+                <div id="chatMessages" class="chat-messages"></div>
+                <div class="chat-input">
+                    <input type="text" id="messageInput" placeholder="Type a message...">
+                    <button id="sendMessage">Send</button>
+                </div>
+            </div>
+
+            <div id="audioTest" class="audio-test hidden">
+                <div class="audio-test-content">
+                    <h3>Microphone Test</h3>
+                    <div class="level-meter">
+                        <div id="audioLevel" class="level-bar"></div>
+                    </div>
+                    <button id="closeAudioTest" class="btn secondary">Close</button>
+                </div>
+            </div>
+
+            <div id="timerModal" class="modal hidden">
+                <div class="modal-content">
+                    <h3>Set Camera Timer</h3>
+                    <div class="timer-inputs">
+                        <input type="number" id="timerHours" min="0" max="12" placeholder="Hours">
+                        <input type="number" id="timerMinutes" min="0" max="59" placeholder="Minutes">
+                    </div>
+                    <div class="timer-presets">
+                        <button data-time="30">30m</button>
+                        <button data-time="60">1h</button>
+                        <button data-time="120">2h</button>
+                    </div>
+                    <div class="modal-buttons">
+                        <button id="startTimer" class="btn primary">Start Timer</button>
+                        <button id="cancelTimer" class="btn secondary">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://unpkg.com/peerjs@1.4.7/dist/peerjs.min.js"></script>
+    <script src="room.js"></script>
+</body>
+</html>

@@ -1,0 +1,336 @@
+.setup-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 1rem auto;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .setup-container {
+        margin: 0;
+        border-radius: 0;
+        min-height: 100vh;
+    }
+}
+
+.profile-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+@media (max-width: 768px) {
+    .profile-section {
+        padding: 0;
+    }
+}
+
+.avatar-selection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.selected-avatar {
+    width: min(120px, 30vw);
+    height: min(120px, 30vw);
+    border-radius: 50%;
+    border: 3px solid var(--redish-pink);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--light-purple);
+}
+
+.avatar-emoji {
+    font-size: 60px;
+    line-height: 1;
+}
+
+.avatar-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    max-width: 400px;
+}
+
+.avatar-btn {
+    width: min(80px, 20vw);
+    height: min(80px, 20vw);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+    border: 2px solid transparent;
+    background-color: var(--light-purple);
+    font-size: min(40px, 10vw);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+@media (hover: none) {
+    .avatar-btn:active {
+        transform: scale(0.95);
+        background-color: var(--redish-pink);
+    }
+}
+
+.avatar-btn:hover {
+    transform: scale(1.1);
+    background-color: var(--redish-pink);
+}
+
+.avatar-btn.selected {
+    border-color: var(--redish-pink);
+    background-color: var(--redish-pink);
+}
+
+.name-input {
+    width: 100%;
+    max-width: 300px;
+}
+
+.name-input label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.name-input input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid var(--light-purple);
+    border-radius: 6px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+    font-size: 1rem;
+}
+
+.settings-section {
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+    .settings-section {
+        border-radius: 0;
+        margin: 0 -1rem;
+    }
+}
+
+.settings-section h2 {
+    color: var(--redish-pink);
+    margin-bottom: 1.5rem;
+}
+
+.setting-group {
+    margin-bottom: 1.5rem;
+}
+
+.setting-group h3 {
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+
+.setting-item {
+    margin-bottom: 1rem;
+}
+
+.setting-item label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--secondary-text);
+}
+
+.setting-item select,
+.setting-item input[type="range"] {
+    width: 100%;
+    padding: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--light-purple);
+    border-radius: 4px;
+    color: var(--text-color);
+}
+
+.preview-section {
+    padding: 1rem;
+}
+
+@media (max-width: 768px) {
+    .preview-section {
+        padding: 0;
+    }
+}
+
+.preview-section h3 {
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+
+.video-preview {
+    position: relative;
+    width: 100%;
+    max-width: min(400px, 90vw);
+    margin: 0 auto;
+    background-color: var(--light-purple);
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 16/9;
+}
+
+@media (max-width: 768px) {
+    .video-preview {
+        border-radius: 8px;
+    }
+}
+
+.video-preview video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.preview-controls {
+    position: absolute;
+    bottom: 0.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+}
+
+@media (min-width: 768px) {
+    .preview-controls {
+        bottom: 1rem;
+        gap: 1rem;
+    }
+}
+
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    justify-content: center;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    width: 100%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2rem;
+}
+
+.setup-container {
+    padding-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+    .action-buttons {
+        bottom: 0;
+        left: 0;
+        right: 0;
+        transform: none;
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        border-radius: 0;
+        padding: 1rem;
+        background-color: var(--dark-purple);
+    }
+}
+
+.action-buttons .btn {
+    position: relative;
+    z-index: 1001;
+    min-height: 48px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    pointer-events: auto;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.action-buttons .btn:active {
+    transform: scale(0.98);
+}
+
+/* Media permissions modal */
+.modal {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    background-color: var(--bg-dark);
+    padding: 2rem;
+    border-radius: 1rem;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal-content h3 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.modal-content p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.action-buttons .btn {
+    flex: 1;
+    max-width: 200px;
+}
+
+@media (max-width: 600px) {
+    .avatar-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .action-buttons {
+        flex-direction: column;
+    }
+
+    .action-buttons .btn {
+        max-width: 100%;
+    }
+}

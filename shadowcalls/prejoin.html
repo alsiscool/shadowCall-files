@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShadowCalls - Setup</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="prejoin.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>ShadowCalls</h1>
+            <p class="subtitle">Setup Your Profile</p>
+        </header>
+
+        <main class="setup-container">
+            <div class="profile-section">
+                <div class="avatar-selection">
+                    <div class="selected-avatar" id="selectedAvatar">
+                        <span class="avatar-emoji" id="avatarPreview">😊</span>
+                    </div>
+                    <div class="avatar-grid" id="avatarGrid">
+                        <button class="avatar-btn" data-avatar="😊">😊</button>
+                        <button class="avatar-btn" data-avatar="🌟">🌟</button>
+                        <button class="avatar-btn" data-avatar="🎮">🎮</button>
+                        <button class="avatar-btn" data-avatar="🎨">🎨</button>
+                        <button class="avatar-btn" data-avatar="🎵">🎵</button>
+                        <button class="avatar-btn" data-avatar="🌙">🌙</button>
+                    </div>
+                </div>
+
+                <form class="name-input" onsubmit="event.preventDefault();">
+                    <label for="userName">Your Name</label>
+                    <input type="text" id="userName" placeholder="Enter your name" required>
+                </form>
+            </div>
+
+            <div class="settings-section">
+                <h2>Settings</h2>
+                
+                <div class="setting-group">
+                    <h3>Audio</h3>
+                    <div class="setting-item">
+                        <label for="audioInput">Microphone</label>
+                        <select id="audioInput"></select>
+                    </div>
+                    <div class="setting-item">
+                        <label for="audioLevel">Input Level</label>
+                        <input type="range" id="audioLevel" min="0" max="100" value="100">
+                    </div>
+                </div>
+
+                <div class="setting-group">
+                    <h3>Video</h3>
+                    <div class="setting-item">
+                        <label for="videoInput">Camera</label>
+                        <select id="videoInput"></select>
+                    </div>
+                    <div class="setting-item">
+                        <label for="videoQuality">Quality</label>
+                        <select id="videoQuality">
+                            <option value="high">High</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="low">Low</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="preview-section">
+                <h3>Preview</h3>
+                <div class="video-preview">
+                    <video id="previewVideo" autoplay muted playsinline></video>
+                    <div class="preview-controls">
+                        <button id="togglePreviewAudio" class="control-btn">
+                            <span class="icon">🎤</span>
+                        </button>
+                        <button id="togglePreviewVideo" class="control-btn">
+                            <span class="icon">📹</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button type="button" id="backButton" class="btn secondary" onclick="window.location.href='index.html'">Back</button>
+                <button type="button" id="joinButton" class="btn primary" onclick="window.handleJoin && window.handleJoin(event)">Join Sleepover</button>
+            </div>
+        </main>
+    </div>
+    <script src="https://unpkg.com/peerjs@1.4.7/dist/peerjs.min.js"></script>
+    <script src="prejoin.js"></script>
+
+    <!-- Media permissions prompt -->
+    <div id="mediaPrompt" class="modal hidden">
+        <div class="modal-content">
+            <h3>Camera and Microphone Access</h3>
+            <p>Please allow access to your camera and microphone to join the call.</p>
+            <div class="modal-buttons">
+                <button id="retryMedia" class="btn primary">Retry</button>
+                <button id="skipMedia" class="btn secondary">Skip Media Access</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
